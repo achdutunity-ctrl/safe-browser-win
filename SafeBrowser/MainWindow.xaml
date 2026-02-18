@@ -1,0 +1,66 @@
+<Window x:Class="SafeBrowser.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Safe Browser" Height="580" Width="420"
+        Background="#0F1923"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize"
+        FlowDirection="RightToLeft">
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <!-- כותרת -->
+    <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,30,0,20">
+      <TextBlock Text="🛡️" FontSize="48" HorizontalAlignment="Center"/>
+      <TextBlock Text="Safe Browser" FontSize="26" FontWeight="Bold" 
+                 Foreground="#4FC3F7" HorizontalAlignment="Center" Margin="0,4,0,0"/>
+      <TextBlock Text="דפדפן מוגן לילדים" FontSize="13" 
+                 Foreground="#78909C" HorizontalAlignment="Center"/>
+    </StackPanel>
+
+    <!-- רשימת פרופילים -->
+    <ScrollViewer Grid.Row="1" Margin="16,0">
+      <StackPanel>
+        <TextBlock x:Name="EmptyMessage" Text="אין פרופילים עדיין&#10;לחץ + כדי להוסיף"
+                   Foreground="#546E7A" FontSize="15" TextAlignment="Center"
+                   Margin="0,50,0,0" Visibility="Collapsed"/>
+        <ItemsControl x:Name="ProfilesList">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate>
+              <Border Background="#1A2D45" CornerRadius="10" 
+                      Margin="0,0,0,10" Padding="16" Cursor="Hand"
+                      MouseLeftButtonDown="ProfileCard_Click"
+                      Tag="{Binding}">
+                <Border.InputBindings>
+                  <MouseBinding Gesture="RightClick" 
+                                Command="{Binding DataContext.DeleteCommand, 
+                                RelativeSource={RelativeSource AncestorType=Window}}"
+                                CommandParameter="{Binding}"/>
+                </Border.InputBindings>
+                <StackPanel>
+                  <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="Bold" 
+                             Foreground="White"/>
+                  <TextBlock Text="{Binding Url}" FontSize="12" 
+                             Foreground="#78909C" Margin="0,4,0,0"/>
+                  <TextBlock Text="לחץ לפתיחה  •  קליק ימני למחיקה" 
+                             FontSize="10" Foreground="#455A64" Margin="0,6,0,0"/>
+                </StackPanel>
+              </Border>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </StackPanel>
+    </ScrollViewer>
+
+    <!-- כפתור הוספה -->
+    <Button Grid.Row="2" Content="＋  הוסף פרופיל חדש"
+            Style="{StaticResource PrimaryButton}"
+            Margin="16,10,16,16" Height="48"
+            Click="AddProfile_Click"/>
+  </Grid>
+</Window>

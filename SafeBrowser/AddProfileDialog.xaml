@@ -1,0 +1,32 @@
+<Window x:Class="SafeBrowser.AddProfileDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="הוספת פרופיל חדש" Height="400" Width="380"
+        Background="#0F1923" WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize" FlowDirection="RightToLeft">
+
+  <StackPanel Margin="24">
+    <TextBlock Text="הוספת פרופיל חדש" FontSize="20" FontWeight="Bold"
+               Foreground="#4FC3F7" Margin="0,0,0,20"/>
+
+    <TextBlock Text="שם הפרופיל" Foreground="#90A4AE" FontSize="12" Margin="0,0,0,4"/>
+    <TextBox x:Name="TbName" Style="{StaticResource ModernTextBox}" Margin="0,0,0,14"/>
+
+    <TextBlock Text="כתובת האתר" Foreground="#90A4AE" FontSize="12" Margin="0,0,0,4"/>
+    <TextBox x:Name="TbUrl" Style="{StaticResource ModernTextBox}" 
+             FlowDirection="LeftToRight" Margin="0,0,0,14"
+             Text="https://"/>
+
+    <TextBlock Text="קוד נעילה (4+ ספרות)" Foreground="#90A4AE" FontSize="12" Margin="0,0,0,4"/>
+    <PasswordBox x:Name="PbPin" Style="{StaticResource ModernPasswordBox}" Margin="0,0,0,14"/>
+
+    <TextBlock Text="אימות קוד נעילה" Foreground="#90A4AE" FontSize="12" Margin="0,0,0,4"/>
+    <PasswordBox x:Name="PbPinConfirm" Style="{StaticResource ModernPasswordBox}" Margin="0,0,0,14"/>
+
+    <TextBlock x:Name="ErrorMsg" Foreground="#EF5350" FontSize="13" 
+               Margin="0,0,0,10" TextWrapping="Wrap"/>
+
+    <Button Content="✓  הוסף פרופיל" Style="{StaticResource PrimaryButton}"
+            Height="44" Click="Add_Click"/>
+  </StackPanel>
+</Window>
